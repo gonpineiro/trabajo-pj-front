@@ -10,7 +10,7 @@ export const updateEdificioById = (id, payload) => edificio.put(`/edificios/${id
 export const deleteEdificioById = (id) => edificio.delete(`/edificios/${id}`);
 export const getEdificioById = (id) => edificio.get(`/edificios/${id}`);
 
-const edificios = {
+const edificiosApi = {
     insertEdificio,
     getAllEdificios,
     updateEdificioById,
@@ -18,4 +18,4 @@ const edificios = {
     getEdificioById,
 };
 
-export default edificios;
+export default edificiosApi;

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import { Layout, Menu } from './screens/';
+import { Layout, Menu, Edificio } from './screens/';
 
 import './index.css';
 
@@ -13,7 +13,8 @@ ReactDOM.render(
             <Layout>
                 <Switch>
                     <Route exact path="/" component={Menu} />
-                    <Route exact path="/edificios" component={Menu} />
+                    <Route exact path="/edificios" component={Edificio} />
+                    <Route exact path="/dependencias" component={Menu} />
                 </Switch>
             </Layout>
         </BrowserRouter>

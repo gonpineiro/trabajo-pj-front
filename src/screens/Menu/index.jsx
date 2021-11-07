@@ -12,12 +12,9 @@ const Menu = () => {
         );
     };
     return (
-        <div className="container pt-5">
-            <h2 className="titulo text-center mb-5">Seleccione una opción</h2>
-            <div className="row mt-5">
-                <OptionButton name="Crear" url="/edificios" />
-            </div>
-        </div>
+        <>
+            <OptionButton name="Crear" url="/edificios" />
+        </>
     );
 };
 
