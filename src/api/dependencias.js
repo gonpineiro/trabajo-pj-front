@@ -5,17 +5,19 @@ const dependencia = axios.create({
 });
 
 export const insertDependencias = (payload) => dependencia.post(`/dependencias`, payload);
-export const getAllDependenciass = () => dependencia.get(`/dependencias`);
+export const getAllDependencias = () => dependencia.get(`/dependencias`);
 export const updateDependenciasById = (id, payload) => dependencia.put(`/dependencias/${id}`, payload);
+export const setEdificioById = (id, payload) => dependencia.patch(`/dependencias/setEdificio/${id}`, payload);
 export const deleteDependenciasById = (id) => dependencia.delete(`/dependencias/${id}`);
 export const getDependenciasById = (id) => dependencia.get(`/dependencias/${id}`);
 
-const dependencias = {
+const dependenciasApi = {
     insertDependencias,
-    getAllDependenciass,
+    getAllDependencias,
     updateDependenciasById,
+    setEdificioById,
     deleteDependenciasById,
     getDependenciasById,
 };
 
-export default dependencias;
+export default dependenciasApi;

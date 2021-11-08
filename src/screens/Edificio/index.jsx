@@ -22,7 +22,8 @@ const Edificio = () => {
 
     return (
         <>
-            <ModalView show={modalShow} edificio={edificio} onHide={() => setModalShow(false)} />
+            {modalShow && <ModalView show={modalShow} edificio={edificio} onHide={() => setModalShow(false)} />}
+
             <table className="table table-hover ">
                 <thead>
                     <tr>
@@ -37,7 +38,7 @@ const Edificio = () => {
                             <td>{el.nombre}</td>
                             <td>{el.domicilio}</td>
                             <td onClick={() => showInfo(el)}>
-                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                <i className="fa fa-eye" aria-hidden="true"></i>
                             </td>
                         </tr>
                     ))}
