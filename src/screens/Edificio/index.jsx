@@ -23,7 +23,6 @@ const Edificio = () => {
     return (
         <>
             {modalShow && <ModalView show={modalShow} edificio={edificio} onHide={() => setModalShow(false)} />}
-
             <table className="table table-hover ">
                 <thead>
                     <tr>

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Modal } from 'react-bootstrap';
 
+import { Spinner } from '../../components';
+
 import { dependenciasApi } from '../../api';
 
 const ModalView = (props) => {
@@ -8,15 +10,22 @@ const ModalView = (props) => {
     const [idDependencia, setIdDependencia] = useState(null);
     const [dependenciasVinculadas, setDependenciasVinculadas] = useState(null);
     const [edificioModal, setEdificioModal] = useState(props.edificio);
+    const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
+    const callData = () => {
         /* Esto hay que retirarlo y solucionar para traer los edificios desde las props */
         setEdificioModal(props.edificio);
         dependenciasApi.getAllDependencias().then(({ data }) => {
             setDependencias(data.filter((dep) => !dep.edificio));
             setDependenciasVinculadas(data.filter((dep) => dep.edificio && dep.edificio.id === edificioModal.id));
+            setLoading(false);
         });
-    }, [edificioModal.id, props.edificio]);
+    };
+
+    useEffect(() => {
+        callData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const depSelect = ({ target: { value } }) => {
         if (value !== 'Seleccione...') {
@@ -27,7 +36,9 @@ const ModalView = (props) => {
     };
 
     const addDep = (edificio) => {
+        setLoading(true);
         dependenciasApi.setEdificioById(idDependencia, edificio);
+        callData();
     };
 
     return (
@@ -42,7 +53,7 @@ const ModalView = (props) => {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                {props.edificio && (
+                {!loading ? (
                     <>
                         <div className="form-group">
                             <label>Dirección</label>
@@ -70,6 +81,8 @@ const ModalView = (props) => {
                         <h4>Dependencias</h4>
                         {dependenciasVinculadas && dependenciasVinculadas.map((e, key) => <div key={key}>{e.nombre}</div>)}
                     </>
+                ) : (
+                    <Spinner />
                 )}
             </Modal.Body>
         </Modal>
