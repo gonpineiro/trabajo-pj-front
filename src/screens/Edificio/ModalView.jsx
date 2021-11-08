@@ -37,6 +37,7 @@ const ModalView = (props) => {
 
     const addDep = (edificio) => {
         setLoading(true);
+        setIdDependencia(null);
         dependenciasApi.setEdificioById(idDependencia, edificio);
         callData();
     };
@@ -74,12 +75,20 @@ const ModalView = (props) => {
                             </select>
                         </div>
                         <br />
-                        <button type="submit" className="btn btn-primary" onClick={() => addDep(props.edificio)}>
+                        <button type="submit" className="btn btn-primary" onClick={() => addDep(props.edificio)} disabled={!idDependencia}>
                             Agregar
                         </button>
 
-                        <h4>Dependencias</h4>
-                        {dependenciasVinculadas && dependenciasVinculadas.map((e, key) => <div key={key}>{e.nombre}</div>)}
+                        <hr />
+                        <h4>Dependencias del edificio</h4>
+                        <hr />
+                        {dependenciasVinculadas &&
+                            dependenciasVinculadas.map((e, key) => (
+                                <>
+                                    <small key={key}>{e.nombre}</small>
+                                    <br />
+                                </>
+                            ))}
                     </>
                 ) : (
                     <Spinner />
