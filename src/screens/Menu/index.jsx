@@ -13,7 +13,8 @@ const Menu = () => {
     };
     return (
         <>
-            <OptionButton name="Crear" url="/edificios" />
+            <OptionButton name="Edificios" url="/edificios" />
+            <OptionButton name="Dependencias" url="/dependencias" />
         </>
     );
 };
