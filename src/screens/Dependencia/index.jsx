@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
+import { Spinner, MenuForm } from '../../components';
 
 import { dependenciasApi } from '../../api';
 import ModalView from './ModalView';
 
 const Dependencia = () => {
-    const [dependencias, setDependencias] = useState([]);
-    const [modalShow, setModalShow] = useState(false);
+    const [dependencias, setDependencias] = useState(null);
+    const [modalView, setModalView] = useState(false);
     const [dependencia, setDependencia] = useState(null);
 
     useEffect(() => {
@@ -15,13 +16,16 @@ const Dependencia = () => {
     }, []);
 
     const showInfo = (el) => {
-        setModalShow(true);
+        setModalView(true);
         setDependencia(el);
     };
 
+    if (!dependencias) return <Spinner />;
+
     return (
         <>
-            {modalShow && <ModalView show={modalShow} dependencia={dependencia} onHide={() => setModalShow(false)} />}
+            {modalView && <ModalView show={modalView} dependencia={dependencia} onHide={() => setModalView(false)} />}
+            <MenuForm />
             <table className="table table-hover ">
                 <thead>
                     <tr>
@@ -35,8 +39,8 @@ const Dependencia = () => {
                         <tr key={key}>
                             <td>{el.nombre}</td>
                             <td>{el.domicilio}</td>
-                            <td onClick={() => showInfo(el)}>
-                                <i className="fa fa-eye" aria-hidden="true"></i>
+                            <td>
+                                <i className="fa fa-eye" aria-hidden="true" onClick={() => showInfo(el)}></i>
                             </td>
                         </tr>
                     ))}

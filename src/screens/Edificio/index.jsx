@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
+import { MenuForm, Spinner } from '../../components';
 
 import { edificiosApi } from '../../api';
 
 import ModalView from './ModalView';
 
 const Edificio = () => {
-    const [edificios, setEdificios] = useState([]);
-    const [modalShow, setModalShow] = useState(false);
+    const [edificios, setEdificios] = useState(null);
+    const [modalView, setModalView] = useState(false);
     const [edificio, setEdificio] = useState(null);
 
     useEffect(() => {
@@ -16,13 +17,16 @@ const Edificio = () => {
     }, []);
 
     const showInfo = (el) => {
-        setModalShow(true);
+        setModalView(true);
         setEdificio(el);
     };
 
+    if (!edificios) return <Spinner />;
+
     return (
         <>
-            {modalShow && <ModalView show={modalShow} edificio={edificio} onHide={() => setModalShow(false)} />}
+            {modalView && <ModalView show={modalView} edificio={edificio} onHide={() => setModalView(false)} />}
+            <MenuForm />
             <table className="table table-hover ">
                 <thead>
                     <tr>

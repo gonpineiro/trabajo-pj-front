@@ -17,8 +17,7 @@ header {
 
     margin-bottom: 700px;
 }
-
-/* end layout */
+/* End Layout */
 
 .btn-blue {
     color: #fbfdfe !important;
@@ -30,3 +29,12 @@ header {
     border-radius: 0px;
 }
 
+.fa {
+    color: #42b2df;
+    cursor: pointer;
+    font-size: 2rem;
+}
+
+.fa:hover {
+    transform: scale(1.3);
+}
