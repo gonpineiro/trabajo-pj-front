@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+import { API_URL } from '../config';
+
 const edificio = axios.create({
-    baseURL: 'http://localhost:3001/api/v1/',
+    baseURL: API_URL,
 });
 
 export const insertEdificio = (payload) => edificio.post(`/edificios`, payload);
